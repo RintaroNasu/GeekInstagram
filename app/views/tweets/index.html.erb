@@ -18,6 +18,3 @@
   <%= link_to "マイページへ", user_path(current_user.id) %>
 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 <% end %>
-
-<%= column_chart Tweet.group(:category).group_by_month(:start_time, format:"%Y-%m").sum(:cost),
-xtitle: "月" ,ytitle:"合計金額",suffix: "円" %>
