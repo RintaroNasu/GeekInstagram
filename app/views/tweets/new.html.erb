@@ -1,0 +1,22 @@
+<h1>GeekTwitter</h1>
+<h3>新規Tweet</h3>
+<%= form_for @tweet do |f| %>
+  <div class="field">
+    <%= f.label :body %>
+    <%= f.text_field :body, :size => 140 %>
+  </div>
+  <div class="time">
+    <%= form.label :日付 %> 
+    <%= form.datetime select :start_time %>
+  </div>
+  <div class="time">
+    <%= form.label:食事 %>
+    <%= form.select :category, [["朝食","朝食"], ["昼食","昼食"],["夕食","夕食"],["間食","間食"]], include_blank:"カテゴリー" %>
+  </div>
+  <div class="fields">
+    <%= form.label:費用 %>
+    <%= form.number_field :cost, :size => 10 %> 円
+    <%= f.submit "Tweetする" %>
+  </div>
+<% end %>
+<%= link_to "Tweet一覧に戻る", tweets_path %>

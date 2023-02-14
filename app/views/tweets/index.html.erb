@@ -1,0 +1,23 @@
+<h1>GeekTwitter</h1>
+<h3>Tweet一覧</h3>
+<%= link_to "新規投稿ページへ", new_tweet_path %>
+<div class="tweets-container">
+  <% @tweets.each do |t| %>
+    <div class="tweet">
+      <%= t.body %>
+      <%= t.created_at %>
+      <%= link_to "詳細へ", tweet_path(t.id) %>  
+    </div>
+  <% end %>
+</div>
+<% unless user_signed_in? %>
+<%= link_to "ログイン", new_user_session_path %>
+<%= link_to "新規登録", new_user_registration_path %>
+<% end %>
+<% if user_signed_in? %>
+  <%= link_to "マイページへ", user_path(current_user.id) %>
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<% end %>
+
+<%= column_chart Tweet.group(:category).group_by_month(:start_time, format:"%Y-%m").sum(:cost),
+xtitle: "月" ,ytitle:"合計金額",suffix: "円" %>
